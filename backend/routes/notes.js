@@ -1,4 +1,5 @@
 const express = require("express");
+const Notes = require("../models/notesModel");
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST a new note
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   res.json({ mssg: `POST a new note` });
 });
 
