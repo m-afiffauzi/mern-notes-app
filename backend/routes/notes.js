@@ -1,31 +1,20 @@
 const express = require("express");
-const Notes = require("../models/notesModel");
-
+const notes = require("../controllers/notesController");
 const router = express.Router();
 
 // GET all notes
-router.get("/", (req, res) => {
-  res.json({ mssg: `GET all notes` });
-});
+router.get("/", notes.getNotes);
 
 // GET a note
-router.get("/:id", (req, res) => {
-  res.json({ mssg: `GET a note` });
-});
+router.get("/:id", notes.getNote);
 
 // POST a new note
-router.post("/", async (req, res) => {
-  res.json({ mssg: `POST a new note` });
-});
+router.post("/", notes.createNote);
 
 // UPDATE a note
-router.patch("/:id", (req, res) => {
-  res.json({ mssg: `UPDATE a note` });
-});
+router.patch("/:id", notes.updateNote);
 
 // DELETE a note
-router.delete("/:id", (req, res) => {
-  res.json({ mssg: `DELETE a note` });
-});
+router.delete("/:id", notes.deleteNote);
 
 module.exports = router;
