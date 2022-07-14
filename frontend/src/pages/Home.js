@@ -24,7 +24,7 @@ const Home = () => {
     <div className="home">
       <div className="notes">
         {notes && notes.map((note) => (
-          <NoteDetails key={note.id} note={note} />
+          <NoteDetails key={note._id} note={note} />
         ))}
       </div>
       <NoteForm />
