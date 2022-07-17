@@ -33,6 +33,18 @@ module.exports = {
   createNote: async (req, res) => {
     const { title, body } = req.body;
 
+    let emptyFields = [];
+
+    if(!title) {
+      emptyFields.push("title");
+    }
+    if(!body) {
+      emptyFields.push("body");
+    }
+    if(emptyFields.length > 0) {
+      return res.status(400).json({ error: "please fill all the fields", emptyFields });
+    }
+
     try {
       const notes = await Notes.create({ title, body });
       res.status(200).json(notes);
