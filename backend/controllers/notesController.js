@@ -42,7 +42,7 @@ module.exports = {
       emptyFields.push("body");
     }
     if(emptyFields.length > 0) {
-      return res.status(400).json({ error: "please fill all the fields", emptyFields });
+      return res.status(400).json({ error: "please fill all fields", emptyFields });
     }
 
     try {
@@ -86,7 +86,7 @@ module.exports = {
       if (!notes) {
         return res.status(404).json({ error: "Notes not found" });
       }
-      res.status(200).json({ message: "Notes deleted" });
+      res.status(200).json(notes);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
