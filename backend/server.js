@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const notesRouter = require("./routes/notes");
+const usersRouter = require("./routes/users");
 
 // express server
 const app = express();
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/notes", notesRouter);
+app.use("/api/users", usersRouter);
 
 // error handlers
 app.use("/", (req, res, next) => {
