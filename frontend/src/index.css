@@ -1,5 +1,5 @@
 /* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 /* layout */
 :root {
@@ -14,19 +14,26 @@ body {
 header {
   background: #fff;
 }
-header .container {
+.container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 header a {
   color: var(--primary);
   text-decoration: none;
 }
-.pages{
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -44,7 +51,7 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .note-details h4 {
   margin: 0 0 5px 0;
@@ -73,7 +80,8 @@ header a {
 }
 
 /* new workout form */
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -104,4 +112,14 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+/* auth form */
+form.signup,
+form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 40px;
 }
