@@ -13,7 +13,7 @@ const NoteDetails = ({ note }) => {
     const response = await fetch("/api/notes/" + note._id, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        "Authorization": `Bearer ${user.token}`,
       },
     });
     const json = await response.json();

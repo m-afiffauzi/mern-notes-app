@@ -13,7 +13,7 @@ const Home = () => {
     const fetchNotes = async () => {
       const response = await fetch("/api/notes", {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          "Authorization": `Bearer ${user.token}`,
         },
       });
       const json = await response.json();

@@ -5,7 +5,8 @@ module.exports = {
   // get all notes
   getNotes: async (req, res) => {
     try {
-      const notes = await Notes.find({}).sort({ createdAt: -1 });
+      const user_id = req.user._id;
+      const notes = await Notes.find({ user_id }).sort({ createdAt: -1 });
       res.status(200).json(notes);
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -35,18 +36,20 @@ module.exports = {
 
     let emptyFields = [];
 
-    if(!title) {
+    if (!title) {
       emptyFields.push("title");
     }
-    if(!body) {
+    if (!body) {
       emptyFields.push("body");
     }
-    if(emptyFields.length > 0) {
+    if (emptyFields.length > 0) {
       return res.status(400).json({ error: "please fill all fields", emptyFields });
     }
 
+    // store note to database
     try {
-      const notes = await Notes.create({ title, body });
+      const user_id = req.user._id;
+      const notes = await Notes.create({ title, body, user_id });
       res.status(200).json(notes);
     } catch (error) {
       res.status(400).json({ error: error.message });

@@ -25,7 +25,7 @@ const NoteForm = () => {
       body: JSON.stringify(note),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+        "Authorization": `Bearer ${user.token}`,
       },
     });
     const json = await response.json();
