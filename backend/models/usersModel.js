@@ -26,7 +26,7 @@ usersSchema.statics.signup = async function (email, password) {
   }
   const exist = await this.findOne({ email: email });
   if (exist) {
-    throw Error(`Email ${email} already is use`);
+    throw Error(`Email ${email} is already in use`);
   }
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
