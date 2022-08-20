@@ -8,7 +8,7 @@ export const useSignup = () => {
 
   const signup = async (email, password) => {
     setLoading(true);
-    setError(false);
+    setError(null);
 
     const response = await fetch(`/api/users/signup`, {
       method: "POST",
@@ -19,7 +19,7 @@ export const useSignup = () => {
 
     if (!response.ok) {
       setLoading(false);
-      setError(true);
+      setError(json.error);
     }
     if (response.ok) {
       // store token in localStorage
