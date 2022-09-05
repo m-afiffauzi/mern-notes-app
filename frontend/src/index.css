@@ -3,28 +3,38 @@
 
 /* layout */
 :root {
-  --primary: #0048ff;
-  --error: #e7195a;
+  --primary: #e7195a;
+  --secondary: #ff98bc;
+  --error: #ff6f00;
+  --dark: #272a2b;
+  --black: #000000;
+}
+html {
+  background-color: #92dcff;
 }
 body {
-  background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
 }
+
+/* navbar */
 header {
-  background: #fff;
+  border-radius: 0 0 35px 35px;
+  background: var(--black);
 }
 header .container {
-  max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-header a {
-  color: var(--primary);
+header .container a {
   text-decoration: none;
+}
+header .container h1 {
+  color: var(--primary);
+  font-size: 1.5em;
 }
 nav {
   display: flex;
@@ -36,14 +46,19 @@ nav div {
   align-items: center;
 }
 nav div span {
-  color: #333;
+  color: white;
   margin-right: 10px;
 }
 nav a {
+  color: var(--primary);
   margin-left: 10px;
+  text-decoration: none;
+}
+nav a:hover {
+  color: var(--secondary);
 }
 nav button {
-  background: fff;
+  background: var(--black);
   color: var(--primary);
   border: 2px solid var(--primary);
   padding: 6px 10px;
@@ -56,11 +71,10 @@ nav button {
   padding: 20px;
   margin: 0 auto;
 }
-
 /* homepage */
 .home {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 100px;
 }
 .note-details {
@@ -91,7 +105,7 @@ nav button {
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #c2c8ff;
+  background: var(--secondary);
   padding: 6px;
   border-radius: 20px;
   color: rgb(0, 0, 0);
@@ -137,7 +151,50 @@ form.signup,
 form.login {
   max-width: 400px;
   margin: 40px auto;
-  padding: 20px;
+  padding: 5px 20px 20px 20px;
   background: white;
   border-radius: 40px;
+}
+
+/* breakpoint 992px */
+@media screen and (max-width: 992px) {
+  .home {
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+  }
+}
+
+/* breakpoint 768px */
+@media screen and (max-width: 768px) {
+  .home {
+    padding: 0 15%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+}
+
+/* breakpoint 576px */
+@media screen and (max-width: 576px) {
+  .home {
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+}
+
+/* breakpoint 340px */
+@media screen and (max-width: 340px) {
+  header .container {
+    padding: 0 10px;
+  }
+  nav div span {
+    font-size: 0.8em;
+  }
+  nav div button {
+    font-size: 0.6em;
+  }
 }
