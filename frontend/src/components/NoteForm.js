@@ -25,7 +25,7 @@ const NoteForm = () => {
       body: JSON.stringify(note),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${user.token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();
@@ -54,8 +54,10 @@ const NoteForm = () => {
       <label>Description:</label>
       <input type="textarea" onChange={(e) => setBody(e.target.value)} value={body} className={emptyFields.includes("body") ? "error" : ""} />
 
-      <button>Add Note</button>
-      {error && <div className="error">{error}</div>}
+      <div>
+        <button>Add Note</button>
+        {error && <div className="error">{error}</div>}
+      </div>
     </form>
   );
 };

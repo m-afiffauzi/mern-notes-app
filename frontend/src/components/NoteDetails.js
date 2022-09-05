@@ -13,7 +13,7 @@ const NoteDetails = ({ note }) => {
     const response = await fetch("/api/notes/" + note._id, {
       method: "DELETE",
       headers: {
-        "Authorization": `Bearer ${user.token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();
@@ -30,7 +30,6 @@ const NoteDetails = ({ note }) => {
         <strong>{note.body}</strong>
       </h2>
       <p>{formatDistanceToNow(new Date(note.createdAt), { addSuffix: true })}</p>
-      <span className="material-symbols-outlined">edit</span>
       <span className="material-symbols-outlined" onClick={handleDelete}>
         delete
       </span>

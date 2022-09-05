@@ -19,12 +19,13 @@ body {
 
 /* navbar */
 header {
-  border-radius: 0 0 35px 35px;
   background: var(--black);
+  border-radius: 0 0 35px 35px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
 }
 header .container {
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,9 +54,11 @@ nav a {
   color: var(--primary);
   margin-left: 10px;
   text-decoration: none;
+  transition: 200ms ease-in-out;
 }
 nav a:hover {
   color: var(--secondary);
+  transition: 200ms ease-in-out;
 }
 nav button {
   background: var(--black);
@@ -65,6 +68,12 @@ nav button {
   border-radius: 20px;
   cursor: pointer;
   font-size: 1em;
+  transition: 200ms ease-in-out;
+}
+nav button:hover {
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  transition: 200ms ease-in-out;
 }
 .pages {
   max-width: 1400px;
@@ -83,7 +92,7 @@ nav button {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
 }
 .note-details h4 {
   margin: 0 0 5px 0;
@@ -109,9 +118,24 @@ nav button {
   padding: 6px;
   border-radius: 20px;
   color: rgb(0, 0, 0);
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.5);
+  transition: 300ms ease-in-out;
+}
+.note-details span:hover {
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+  transition: 300ms ease-in-out;
 }
 
 /* new workout form */
+form.create h3 {
+  text-align: center;
+}
+form.create div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 label,
 input {
   display: block;
@@ -124,6 +148,7 @@ input {
   border: 1px solid #ddd;
   border-radius: 20px;
   box-sizing: border-box;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
 }
 form button {
   background: var(--primary);
@@ -133,6 +158,12 @@ form button {
   font-family: "Poppins";
   border-radius: 20px;
   cursor: pointer;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transition: 300ms ease-in-out;
+}
+form button:hover {
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+  transition: 300ms ease-in-out;
 }
 div.error {
   padding: 10px;
@@ -154,6 +185,20 @@ form.login {
   padding: 5px 20px 20px 20px;
   background: white;
   border-radius: 40px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+form.signup h3,
+form.login h3 {
+  text-align: center;
+}
+form.signup div,
+form.login div {
+  display: flex;
+  justify-content: center;
+}
+form.signup div button,
+form.login div button {
+  padding: 10px 20px;
 }
 
 /* breakpoint 992px */
