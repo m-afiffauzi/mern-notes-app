@@ -1,5 +1,5 @@
 /* google font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
 /* layout */
 :root {
@@ -14,7 +14,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 /* navbar */
@@ -155,7 +155,7 @@ form button {
   border: 0;
   color: #fff;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
@@ -191,8 +191,8 @@ form.signup h3,
 form.login h3 {
   text-align: center;
 }
-form.signup div,
-form.login div {
+form.signup div div,
+form.login div div {
   display: flex;
   justify-content: center;
 }
