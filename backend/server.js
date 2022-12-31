@@ -25,19 +25,10 @@ app.use('/api/users', usersRouter);
 // static files (frontend build)
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'), (err) => {
-    if (err) {
-      res.status(500).send(err);
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'), (error) => {
+    if (error) {
+      res.status(500).send(error);
     }
-  });
-});
-
-// error handlers
-app.use('/', (req, res, next) => {
-  res.status(404);
-  res.json({
-    status: '404',
-    errors: 'page not found',
   });
 });
 
