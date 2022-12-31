@@ -23,9 +23,13 @@ app.use('/api/notes', notesRouter);
 app.use('/api/users', usersRouter);
 
 // static files (frontend build)
-app.use(express.static(path.join(__dirname, '../frontend', 'build')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend', 'build', 'index.html'));
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
 });
 
 // error handlers
