@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/notes-daisy.vercel.app/static/css/main.37e18b92.css",
-    "main.js": "/notes-daisy.vercel.app/static/js/main.b4a7d9fe.js",
-    "index.html": "/notes-daisy.vercel.app/index.html",
-    "main.37e18b92.css.map": "/notes-daisy.vercel.app/static/css/main.37e18b92.css.map",
-    "main.b4a7d9fe.js.map": "/notes-daisy.vercel.app/static/js/main.b4a7d9fe.js.map"
+    "main.css": "./static/css/main.37e18b92.css",
+    "main.js": "./static/js/main.b4a7d9fe.js",
+    "index.html": "./index.html",
+    "main.37e18b92.css.map": "./static/css/main.37e18b92.css.map",
+    "main.b4a7d9fe.js.map": "./static/js/main.b4a7d9fe.js.map"
   },
   "entrypoints": [
     "static/css/main.37e18b92.css",
