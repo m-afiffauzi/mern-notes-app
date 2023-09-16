@@ -34,16 +34,8 @@ module.exports = {
   createNote: async (req, res) => {
     const { title, body } = req.body;
 
-    let emptyFields = [];
-
-    if (!title) {
-      emptyFields.push("title");
-    }
-    if (!body) {
-      emptyFields.push("body");
-    }
-    if (emptyFields.length > 0) {
-      return res.status(400).json({ error: "please fill all fields", emptyFields });
+    if (!title || !body) {
+      return res.status(400).json({ error: "please fill all fields" });
     }
 
     // store note to database
@@ -58,6 +50,13 @@ module.exports = {
 
   // update a note
   updateNote: async (req, res) => {
+    const { title, body } = req.body;
+
+    if (!title || !body) {
+      return res.status(400).json({ error: "please fill all fields" });
+    }
+
+    // store note to database
     try {
       const id = req.params.id;
       if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -66,13 +65,14 @@ module.exports = {
       const notes = await Notes.findOneAndUpdate(
         { _id: id },
         {
-          ...req.body,
+          title,
+          body,
         }
       );
       if (!notes) {
         return res.status(404).json({ error: "Notes not found" });
       }
-      res.status(200).json({ message: "Notes updated" });
+      res.status(200).json(notes);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }

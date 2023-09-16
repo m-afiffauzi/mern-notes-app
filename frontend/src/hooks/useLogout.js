@@ -1,9 +1,10 @@
+import toast from "react-hot-toast";
 import { useAuthContext } from "./useAuthContext";
-import { useNotesContext } from "./useNotesContext";
+import { useNoteStore } from "../store/noteStore";
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
-  const { dispatch: notesDispatch } = useNotesContext();
+  const setNotes = useNoteStore((state) => state.setNotes);
 
   const logout = () => {
     // remove user token
@@ -11,7 +12,8 @@ export const useLogout = () => {
 
     // dispatch logout
     dispatch({ type: "LOGOUT" });
-    notesDispatch({ type: "SET_NOTES", payload: null });
+    setNotes(null);
+    toast.success("Logged out");
   };
   return { logout };
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -26,6 +27,7 @@ export const useSignup = () => {
       localStorage.setItem("user", JSON.stringify(json));
       // update auth context
       dispatch({ type: "LOGIN", payload: json });
+      toast.success("Signup success");
       setLoading(false);
     }
   };

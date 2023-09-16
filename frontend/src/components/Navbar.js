@@ -9,31 +9,44 @@ const Navbar = () => {
     logout();
   };
   return (
-    <header>
-      <div className="container">
+    <div className="fixed flex items-center justify-center gap-4 xs:gap-8 sm:gap-48 md:gap-96 lg:gap-[567px] xl:gap-[768px] 2xl:gap-[1024px] z-10 navbar bg-secondary-content text-primary">
+      <div className="flex">
         <Link to="/">
-          <h1>Note</h1>
+          <h1 className="text-xl xs:text-2xl font-bold hover:text-accent transition duration-300">
+            Notes
+          </h1>
         </Link>
-        <nav>
-          {user && (
-            <div className="logged">
-              <span>{user.email}</span>
-              <button onClick={handleClick}>Logout</button>
-            </div>
-          )}
-          {!user && (
-            <div>
-              <Link to="/signup">
-                <p>Signup</p>
-              </Link>
-              <Link to="/login">
-                <p>Login</p>
-              </Link>
-            </div>
-          )}
-        </nav>
       </div>
-    </header>
+      <div className="flex-none font-semibold">
+        {user && (
+          <div className="flex gap-2 md:gap-8 items-center justify-center">
+            <span className="text-accent text-xs xs:text-base">
+              {user.email}
+            </span>
+            <button
+              onClick={handleClick}
+              className="btn w-24 text-md border-none text-red-500 hover:bg-red-500 hover:text-white rounded-full btn-sm capitalize transition duration-300"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+        {!user && (
+          <div className="flex gap-2 md:gap-8">
+            <Link to="/signup">
+              <button className="btn w-24 btn-info hover:bg-info/80 rounded-full btn-sm capitalize transition duration-300">
+                Sign Up
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="btn w-24 btn-success hover:bg-success/80 rounded-full btn-sm capitalize transition duration-300">
+                Login
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

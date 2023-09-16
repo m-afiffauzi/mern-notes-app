@@ -1,37 +1,26 @@
-import { useEffect } from "react";
-import { useNotesContext } from "../hooks/useNotesContext";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-import NoteDetails from "../components/NoteDetails";
-import NoteForm from "../components/NoteForm";
-
 const Home = () => {
-  const { notes, dispatch } = useNotesContext();
   const { user } = useAuthContext();
 
-  useEffect(() => {
-    const fetchNotes = async () => {
-      const response = await fetch("/api/notes", {
-        headers: {
-          "Authorization": `Bearer ${user.token}`,
-        },
-      });
-      const json = await response.json();
-
-      if (response.ok) {
-        dispatch({ type: "SET_NOTES", payload: json });
-      }
-    };
-
-    if (user) {
-      fetchNotes();
-    }
-  }, [dispatch, user]);
-
   return (
-    <div className="home">
-      <div className="notes">{notes && notes.map((note) => <NoteDetails key={note._id} note={note} />)}</div>
-      <NoteForm />
+    <div className="hero min-h-[500px] flex items-center justify-center">
+      <div className="hero-content text-center">
+        <div className="max-w-md lg:max-w-2xl">
+          <h1 className="text-6xl font-bold">Notes</h1>
+          <p className="py-6 text-4xl">
+            Write your thoughts as they come to you.
+          </p>
+          <p className="pb-6 text-xl">It's free, so use it as your wish...</p>
+          <Link to="/dashboard">
+            <button className="btn btn-primary rounded-full">
+              {user ? "Dashboard" : "Get Started"}
+            </button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
