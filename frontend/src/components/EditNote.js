@@ -29,10 +29,6 @@ const EditNote = ({ isOpen, setIsOpen, note }) => {
 
     const NoteValue = { title, body };
 
-    if (note.title === title || note.body === body) {
-      return;
-    }
-
     const response = await fetch("/api/notes/" + note._id, {
       method: "PATCH",
       body: JSON.stringify(NoteValue),
