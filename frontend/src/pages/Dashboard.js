@@ -33,8 +33,8 @@ const Dashboard = () => {
 
   let filterNotes = notes?.filter(
     (note) =>
-      note.title.toLowerCase().includes(query) ||
-      note.body.toLowerCase().includes(query)
+      note.title.toLowerCase().includes(query.toLowerCase()) ||
+      note.body.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
@@ -47,12 +47,24 @@ const Dashboard = () => {
             type="text"
             name="search"
             placeholder="Search notes..."
+            value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="input input-sm h-10 input-bordered w-full max-w-xs rounded-full shadow-md"
           />
-          <span className="absolute right-3 top-1 h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-3xl text-neutral-content rotate-45">
-            &#9906;
-          </span>
+          {query !== "" ? (
+            <button
+              id="delete-search"
+              aria-label="delete-search"
+              onClick={() => setQuery("")}
+              className="absolute right-3 top-[3px] h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-xl text-neutral-content hover:text-red-500 cursor-pointer"
+            >
+              &#10005;
+            </button>
+          ) : (
+            <span className="absolute right-3 top-1 h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-3xl text-neutral-content rotate-45">
+              &#9906;
+            </span>
+          )}
         </div>
         {/* Add Note Modal */}
         <AddNote />
@@ -62,6 +74,10 @@ const Dashboard = () => {
       {/* Loading */}
       {!notes && (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
+          <NoteSkeleton />
+          <NoteSkeleton />
+          <NoteSkeleton />
+          <NoteSkeleton />
           <NoteSkeleton />
           <NoteSkeleton />
           <NoteSkeleton />
@@ -80,7 +96,7 @@ const Dashboard = () => {
 
       {/* Notes */}
       <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
-        {filterNotes &&
+        {filterNotes?.length !== 0 &&
           filterNotes?.map((note) => (
             <div key={note._id}>
               <NoteCard note={note} />

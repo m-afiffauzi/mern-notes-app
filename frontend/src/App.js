@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
+import Footer from "./components/Footer";
 
 function App() {
   const { user } = useAuthContext();
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className="bg-primary-content min-h-screen px-4 pt-20">
+        <div className="relative bg-primary-content min-h-screen px-4 pt-20">
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route
@@ -32,6 +33,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
       <Toaster />
     </div>

@@ -29,6 +29,10 @@ const EditNote = ({ isOpen, setIsOpen, note }) => {
 
     const NoteValue = { title, body };
 
+    if (note.title === title || note.body === body) {
+      return;
+    }
+
     const response = await fetch("/api/notes/" + note._id, {
       method: "PATCH",
       body: JSON.stringify(NoteValue),
@@ -71,9 +75,9 @@ const EditNote = ({ isOpen, setIsOpen, note }) => {
         {/* Modal Header */}
         <div className="w-full flex justify-between">
           {/* Modal Title */}
-          <h3 className="text-xl xl:text-2xl font-bold text-primary">
+          <h2 className="text-xl xl:text-2xl font-bold text-primary">
             {formatedDate}
-          </h3>
+          </h2>
           {/* Close Button */}
           <button
             onClick={handleCancel}

@@ -68,9 +68,9 @@ const AddNote = () => {
           {/* Modal Header */}
           <div className="w-full flex justify-between">
             {/* Modal Title */}
-            <h3 className="text-xl xl:text-2xl font-bold text-primary">
+            <h2 className="text-xl xl:text-2xl font-bold text-primary">
               Add Note
-            </h3>
+            </h2>
             {/* Close Button */}
             <button
               onClick={handleAddModal}

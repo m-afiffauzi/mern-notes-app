@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-[500px] md:min-h-[650px] flex justify-center items-center">
+    <div className="w-full min-h-[500px] md:min-h-[600px] flex justify-center items-center">
       <div className="card w-96 bg-base-100 text-primary-content shadow-xl">
         <form
           className="card-body items-center text-center text-success-content"
