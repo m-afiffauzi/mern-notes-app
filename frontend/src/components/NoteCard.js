@@ -4,7 +4,9 @@ import EditNote from "./EditNote";
 
 const NoteCard = ({ note }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleModal = () => {
+  const handleModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsOpen(!isOpen);
   };
   return (

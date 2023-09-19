@@ -9,7 +9,7 @@ const EditNote = ({ isOpen, setIsOpen, note }) => {
   const mutate = useNoteStore((state) => state.mutate);
   const setMutate = useNoteStore((state) => state.setMutate);
   const { user } = useAuthContext();
-  const [title, setTitle] = useState(note ? note.title : "");
+  const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
   const [error, setError] = useState(null);
 

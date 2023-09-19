@@ -72,7 +72,7 @@ const Dashboard = () => {
 
       {/* Notes Container */}
       {/* Loading */}
-      {!notes && (
+      {!notes ? (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
           <NoteSkeleton />
           <NoteSkeleton />
@@ -83,25 +83,26 @@ const Dashboard = () => {
           <NoteSkeleton />
           <NoteSkeleton />
         </div>
-      )}
+      ) : null}
 
       {/* No Matching Notes */}
-      {filterNotes?.length === 0 && (
+      {filterNotes?.length === 0 ? (
         <div className="w-full px-4 sm:px-16 lg:px-24">
           <div className="py-2 mt-4 bg-base-100 shadow-md rounded-full">
             <p className="text-center text-lg font-bold">No Notes Found</p>
           </div>
         </div>
-      )}
+      ) : null}
 
       {/* Notes */}
       <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
-        {filterNotes?.length !== 0 &&
-          filterNotes?.map((note) => (
-            <div key={note._id}>
-              <NoteCard note={note} />
-            </div>
-          ))}
+        {filterNotes?.length !== 0
+          ? filterNotes?.map((note) => (
+              <div key={note._id}>
+                <NoteCard note={note} />
+              </div>
+            ))
+          : null}
       </div>
     </section>
   );
