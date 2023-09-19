@@ -38,18 +38,18 @@ const Dashboard = () => {
   );
 
   return (
-    <section className="flex flex-col justify-center items-center">
-      {/* Note Top Wrapper */}
-      <div className="w-full flex items-center justify-center gap-2 xs:gap-8 sm:gap-36 md:gap-48 lg:gap-[450px] xl:gap-[680px] 2xl:gap-[900px] h-10">
+    <section className="flex flex-col justify-center items-center mt-12">
+      {/* Top Dashboard Wrapper */}
+      <div className="w-full h-14 fixed bg-primary-content top-16 z-10 shadow-md flex items-center justify-center gap-1 xs:gap-8 sm:gap-24 md:gap-44 lg:gap-[380px] xl:gap-[580px] 2xl:gap-[910px]">
         {/* Search Form */}
-        <div className="form-control w-[200px] xs:w-[100] md:w-full md:max-w-xs relative">
+        <div className="form-control w-[160px] xs:w-[200px] sm:w-[260px] md:w-full md:max-w-xs relative">
           <input
             type="text"
             name="search"
             placeholder="Search notes..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="input input-sm h-10 input-bordered w-full max-w-xs rounded-full shadow-md"
+            className="input input-sm h-10 input-bordered w-full max-w-xs rounded-full"
           />
           {query !== "" ? (
             <button
@@ -82,12 +82,16 @@ const Dashboard = () => {
           <NoteSkeleton />
           <NoteSkeleton />
           <NoteSkeleton />
+          <NoteSkeleton />
+          <NoteSkeleton />
+          <NoteSkeleton />
+          <NoteSkeleton />
         </div>
       ) : null}
 
       {/* No Matching Notes */}
       {filterNotes?.length === 0 ? (
-        <div className="w-full px-4 sm:px-16 lg:px-24">
+        <div className="w-full mt-12 px-4 sm:px-16 lg:px-24">
           <div className="py-2 mt-4 bg-base-100 shadow-md rounded-full">
             <p className="text-center text-lg font-bold">No Notes Found</p>
           </div>

@@ -9,7 +9,7 @@ const Navbar = () => {
     logout();
   };
   return (
-    <div className="fixed flex items-center justify-center gap-4 xs:gap-8 sm:gap-48 md:gap-96 lg:gap-[567px] xl:gap-[768px] 2xl:gap-[1024px] z-10 navbar bg-secondary-content text-primary">
+    <div className="fixed shadow-lg z-20 flex items-center justify-center gap-4 xs:gap-8 sm:gap-40 md:gap-[280px] lg:gap-[480px] xl:gap-[680px] 2xl:gap-[1012px] navbar bg-secondary-content text-primary">
       <div className="flex">
         <Link to="/">
           <h1 className="text-xl xs:text-2xl font-bold hover:text-accent transition duration-300">

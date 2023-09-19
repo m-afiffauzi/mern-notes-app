@@ -8,11 +8,15 @@ const DeleteNote = ({ note }) => {
   const deleteNote = useNoteStore((state) => state.deleteNote);
   const { user } = useAuthContext();
 
-  const handleDeleteModal = () => {
+  const handleDeleteModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsDeleteOpen(!isDeleteOpen);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!user) {
       toast.error("You must be logged in");
       return;

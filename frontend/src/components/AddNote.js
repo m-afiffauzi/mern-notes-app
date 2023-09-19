@@ -11,12 +11,15 @@ const AddNote = () => {
   const addNote = useNoteStore((state) => state.addNote);
   const { user } = useAuthContext();
 
-  const handleAddModal = () => {
+  const handleAddModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsAddOpen(!isAddOpen);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (!user) {
       setError("You must be logged in");
@@ -54,7 +57,7 @@ const AddNote = () => {
   return (
     <>
       <button
-        className="btn btn-sm w-24 h-10 btn-outline bg-white text-primary hover:bg-primary-focus hover:border-none rounded-full capitalize shadow-md"
+        className="btn btn-sm w-24 h-10 btn-outline bg-white text-primary hover:bg-primary-focus hover:border-none rounded-full capitalize"
         onClick={handleAddModal}
       >
         Add
