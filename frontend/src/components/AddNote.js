@@ -5,6 +5,7 @@ import { useNoteStore } from "../store/noteStore";
 
 const AddNote = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [error, setError] = useState(null);
@@ -20,9 +21,11 @@ const AddNote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setLoading(true);
 
     if (!user) {
       setError("You must be logged in");
+      setLoading(false);
       return;
     }
 
@@ -40,6 +43,7 @@ const AddNote = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setLoading(false);
       setTimeout(() => {
         setError(null);
       }, 2000);
@@ -48,9 +52,9 @@ const AddNote = () => {
       setTitle("");
       setBody("");
       setError(null);
-      console.log("Note added", json);
       addNote(json);
       toast.success("Note added");
+      setLoading(false);
       setIsAddOpen(!isAddOpen);
     }
   };
@@ -110,9 +114,11 @@ const AddNote = () => {
               )}
               <button
                 onClick={handleSubmit}
-                className="btn w-20 h-10 btn-sm btn-success rounded-full capitalize hover:bg-primary/50 text-lg"
+                className={`${
+                  loading ? "btn-disabled" : ""
+                }btn w-20 h-10 btn-sm btn-success rounded-full capitalize hover:bg-primary/50 text-lg`}
               >
-                Save
+                {loading ? "..." : "Save"}
               </button>
               <button
                 onClick={handleAddModal}

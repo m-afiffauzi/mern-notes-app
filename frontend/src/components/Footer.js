@@ -3,8 +3,8 @@ import React from "react";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer footer-center p-4 bg-accent-content text-accent">
-      <aside>
+    <footer className="footer footer-center p-4 bg-accent-content text-accent absolute bottom-0 left-0">
+      <div>
         <p>
           Copyright © {year} -{" "}
           <a
@@ -16,7 +16,7 @@ const Footer = () => {
             Muhammad Afif Fauzi
           </a>
         </p>
-      </aside>
+      </div>
     </footer>
   );
 };

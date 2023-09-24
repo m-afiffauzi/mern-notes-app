@@ -14,7 +14,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full min-h-[500px] md:min-h-[600px] flex justify-center items-center">
+    <div className="w-full min-h-[500px] flex justify-center items-center">
       <div className="card w-96 bg-base-100 text-primary-content shadow-xl">
         <form
           className="card-body items-center text-center text-info-content"
@@ -30,7 +30,7 @@ const Signup = () => {
               name="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              placeholder="admin@example.com"
+              placeholder="user@gmail.com"
               className="input input-bordered bg-accent w-full max-w-xs rounded-full"
             />
           </div>

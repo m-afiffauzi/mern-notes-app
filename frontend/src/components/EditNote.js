@@ -9,6 +9,7 @@ const EditNote = ({ note, content }) => {
   const mutate = useNoteStore((state) => state.mutate);
   const setMutate = useNoteStore((state) => state.setMutate);
   const { user } = useAuthContext();
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
   const [error, setError] = useState(null);
@@ -31,9 +32,11 @@ const EditNote = ({ note, content }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setLoading(true);
 
     if (!user) {
       setError("You must be logged in");
+      setLoading(false);
       return;
     }
 
@@ -51,6 +54,7 @@ const EditNote = ({ note, content }) => {
 
     if (!response.ok) {
       setError(json.error);
+      setLoading(false);
       setTimeout(() => {
         setError(null);
       }, 2000);
@@ -59,6 +63,7 @@ const EditNote = ({ note, content }) => {
       updateNote(json);
       setMutate(!mutate);
       toast.success("Note updated");
+      setLoading(false);
       setIsOpen(!isOpen);
     }
   };
@@ -129,9 +134,11 @@ const EditNote = ({ note, content }) => {
               )}
               <button
                 onClick={handleSubmit}
-                className="btn w-20 h-10 btn-sm btn-success rounded-full capitalize hover:bg-primary/50 text-lg"
+                className={`${
+                  loading ? "btn-disabled" : ""
+                }btn w-20 h-10 btn-sm btn-success rounded-full capitalize hover:bg-primary/50 text-lg`}
               >
-                Update
+                {loading ? "..." : "Update"}
               </button>
               <DeleteNote note={note} />
             </div>

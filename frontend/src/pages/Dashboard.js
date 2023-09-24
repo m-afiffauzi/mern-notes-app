@@ -38,75 +38,79 @@ const Dashboard = () => {
   );
 
   return (
-    <section className="flex flex-col justify-center items-center mt-12">
+    <section className="flex flex-col justify-center items-center mt-14">
       {/* Top Dashboard Wrapper */}
-      <div className="w-full h-14 fixed bg-primary-content top-16 z-10 shadow-md flex items-center justify-center gap-1 xs:gap-8 sm:gap-24 md:gap-44 lg:gap-[380px] xl:gap-[580px] 2xl:gap-[910px]">
-        {/* Search Form */}
-        <div className="form-control w-[160px] xs:w-[200px] sm:w-[260px] md:w-full md:max-w-xs relative">
-          <input
-            type="text"
-            name="search"
-            placeholder="Search notes..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="input input-sm h-10 input-bordered w-full max-w-xs rounded-full"
-          />
-          {query !== "" ? (
-            <button
-              id="delete-search"
-              aria-label="delete-search"
-              onClick={() => setQuery("")}
-              className="absolute right-3 top-[3px] h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-xl text-neutral-content hover:text-red-500 cursor-pointer"
-            >
-              &#10005;
-            </button>
-          ) : (
-            <span className="absolute right-3 top-1 h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-3xl text-neutral-content rotate-45">
-              &#9906;
-            </span>
-          )}
+      <div className="w-full h-14 fixed bg-primary-content top-16 z-10 shadow-md flex items-center justify-center">
+        <div className="w-full px-6 sm:px-16 2xl:px-12 max-w-[1440px] flex items-center justify-between gap-2">
+          {/* Search Form */}
+          <div className="form-control w-[160px] xs:w-[200px] sm:w-[260px] md:w-full md:max-w-xs relative">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search notes..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="input input-sm h-10 input-bordered w-full max-w-xs rounded-full"
+            />
+            {query !== "" ? (
+              <button
+                id="delete-search"
+                aria-label="delete-search"
+                onClick={() => setQuery("")}
+                className="absolute bg-white right-3 top-[3px] h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-xl text-neutral-content hover:text-red-500 cursor-pointer"
+              >
+                &#10005;
+              </button>
+            ) : (
+              <span className="absolute right-3 top-1 h-8 flex justify-center items-center transition-all duration-300 rounded-2xl text-3xl text-neutral-content rotate-45">
+                &#9906;
+              </span>
+            )}
+          </div>
+          {/* Add Note Modal */}
+          <AddNote />
         </div>
-        {/* Add Note Modal */}
-        <AddNote />
       </div>
 
       {/* Notes Container */}
-      {/* Loading */}
-      {!notes ? (
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-          <NoteSkeleton />
-        </div>
-      ) : null}
-
-      {/* No Matching Notes */}
-      {filterNotes?.length === 0 ? (
-        <div className="w-full mt-12 px-4 sm:px-16 lg:px-24">
-          <div className="py-2 mt-4 bg-base-100 shadow-md rounded-full">
-            <p className="text-center text-lg font-bold">No Notes Found</p>
+      <div className="h-full min-h-screen">
+        {/* Loading */}
+        {!notes ? (
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5">
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
+            <NoteSkeleton />
           </div>
-        </div>
-      ) : null}
+        ) : null}
 
-      {/* Notes */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-3 sm:my-5 px-4 sm:px-16 lg:px-24">
-        {filterNotes?.length !== 0
-          ? filterNotes?.map((note) => (
-              <div key={note._id}>
-                <NoteCard note={note} />
-              </div>
-            ))
-          : null}
+        {/* No Matching Notes */}
+        {filterNotes?.length === 0 ? (
+          <div className="w-full px-4 sm:px-16 lg:px-24">
+            <div className="py-2 mt-60">
+              <p className="text-center text-lg font-bold">No Notes Found</p>
+            </div>
+          </div>
+        ) : null}
+
+        {/* Notes */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+          {filterNotes?.length !== 0
+            ? filterNotes?.map((note) => (
+                <div key={note._id}>
+                  <NoteCard note={note} />
+                </div>
+              ))
+            : null}
+        </div>
       </div>
     </section>
   );

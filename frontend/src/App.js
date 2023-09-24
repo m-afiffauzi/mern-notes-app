@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <div className="relative bg-primary-content min-h-screen px-4 pt-20">
+        <div className="relative flex flex-col items-center justify-center bg-primary-content min-h-screen px-4 pt-20 pb-16">
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route
@@ -32,8 +32,8 @@ function App() {
               element={!user ? <Signup /> : <Navigate to="/dashboard" />}
             />
           </Routes>
+          <Footer />
         </div>
-        <Footer />
       </BrowserRouter>
       <Toaster />
     </div>

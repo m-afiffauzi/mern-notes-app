@@ -13,8 +13,17 @@ const Login = () => {
     await login(email, password);
   };
 
+  const guestEmail = process.env.REACT_APP_GUEST_EMAIL;
+  const guestPassword = process.env.REACT_APP_GUEST_PASSWORD;
+
+  const handleGuestLogin = async (e) => {
+    e.preventDefault();
+
+    await login(guestEmail, guestPassword);
+  };
+
   return (
-    <div className="w-full min-h-[500px] md:min-h-[600px] flex justify-center items-center">
+    <div className="w-full min-h-[500px] flex justify-center items-center">
       <div className="card w-96 bg-base-100 text-primary-content shadow-xl">
         <form
           className="card-body items-center text-center text-success-content"
@@ -30,7 +39,7 @@ const Login = () => {
               name="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              placeholder="admin@example.com"
+              placeholder="test@gmail.com"
               className="input input-bordered bg-accent w-full max-w-xs rounded-full"
             />
           </div>
@@ -53,13 +62,23 @@ const Login = () => {
                 {error}
               </div>
             )}
-            <button
-              className={`${
-                loading ? "btn-disabled" : ""
-              } btn btn-md w-40 btn-success rounded-full`}
-            >
-              Login
-            </button>
+            <div className="flex flex-col items-center justify-center gap-2 w-full">
+              <button
+                className={`${
+                  loading ? "btn-disabled" : ""
+                } btn btn-md w-40 btn-success rounded-full`}
+              >
+                Login
+              </button>
+              <button
+                onClick={handleGuestLogin}
+                className={`${
+                  loading ? "btn-disabled" : ""
+                } btn btn-md w-40 btn-accent rounded-full`}
+              >
+                Guest Login
+              </button>
+            </div>
             <p className="mt-2">
               Not have account?{" "}
               <Link to="/signup" className="text-cyan-500 hover:underline">

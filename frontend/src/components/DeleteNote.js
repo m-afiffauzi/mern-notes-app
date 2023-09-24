@@ -5,6 +5,7 @@ import { useNoteStore } from "../store/noteStore";
 
 const DeleteNote = ({ note }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const deleteNote = useNoteStore((state) => state.deleteNote);
   const { user } = useAuthContext();
 
@@ -17,8 +18,11 @@ const DeleteNote = ({ note }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setLoading(true);
+
     if (!user) {
       toast.error("You must be logged in");
+      setLoading(false);
       return;
     }
     const response = await fetch("/api/notes/" + note._id, {
@@ -31,10 +35,12 @@ const DeleteNote = ({ note }) => {
 
     if (!response.ok) {
       toast.error(json.error);
+      setLoading(false);
     }
     if (response.ok) {
       deleteNote(json);
       toast.success("Note deleted");
+      setLoading(false);
       setIsDeleteOpen(!isDeleteOpen);
     }
   };
@@ -61,13 +67,15 @@ const DeleteNote = ({ note }) => {
           <div className="modal-action flex w-full justify-center gap-x-4">
             <button
               onClick={handleDelete}
-              className="btn btn-error btn-sm h-10 rounded-full capitalize hover:bg-red-400"
+              className={`${
+                loading ? "btn-disabled" : ""
+              }btn btn-error btn-sm w-20 h-10 rounded-full capitalize hover:bg-red-400`}
             >
-              Delete
+              {loading ? "..." : "Delete"}
             </button>
             <button
               onClick={handleDeleteModal}
-              className="btn btn-secondary btn-sm h-10 rounded-full capitalize"
+              className="btn btn-secondary btn-sm w-20 h-10 rounded-full capitalize"
             >
               Cancel
             </button>
