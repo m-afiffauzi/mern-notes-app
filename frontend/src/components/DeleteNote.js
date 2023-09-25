@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNoteStore } from "../store/noteStore";
 
-const DeleteNote = ({ note }) => {
+const DeleteNote = ({ id }) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const deleteNote = useNoteStore((state) => state.deleteNote);
@@ -25,7 +25,7 @@ const DeleteNote = ({ note }) => {
       setLoading(false);
       return;
     }
-    const response = await fetch("/api/notes/" + note._id, {
+    const response = await fetch("/api/notes/" + id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -86,4 +86,6 @@ const DeleteNote = ({ note }) => {
   );
 };
 
-export default DeleteNote;
+const MemoDelete = memo(DeleteNote);
+
+export default MemoDelete;

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNoteStore } from "../store/noteStore";
-import DeleteNote from "./DeleteNote";
+import MemoDelete from "./DeleteNote";
 
-const EditNote = ({ note, content }) => {
+const EditNote = ({ nTitle, nBody, nId, nCreated, nUpdated, content }) => {
   const updateNote = useNoteStore((state) => state.updateNote);
   const mutate = useNoteStore((state) => state.mutate);
   const setMutate = useNoteStore((state) => state.setMutate);
   const { user } = useAuthContext();
   const [loading, setLoading] = useState(false);
-  const [title, setTitle] = useState(note.title);
-  const [body, setBody] = useState(note.body);
+  const [title, setTitle] = useState(nTitle);
+  const [body, setBody] = useState(nBody);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,8 +24,8 @@ const EditNote = ({ note, content }) => {
   const handleCancel = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setTitle(note.title);
-    setBody(note.body);
+    setTitle(nTitle);
+    setBody(nBody);
     setIsOpen(!isOpen);
   };
 
@@ -42,7 +42,7 @@ const EditNote = ({ note, content }) => {
 
     const NoteValue = { title, body };
 
-    const response = await fetch("/api/notes/" + note._id, {
+    const response = await fetch("/api/notes/" + nId, {
       method: "PATCH",
       body: JSON.stringify(NoteValue),
       headers: {
@@ -70,12 +70,12 @@ const EditNote = ({ note, content }) => {
 
   const newDate = (date) => new Date(date);
 
-  const createdDate = newDate(note.createdAt).toLocaleDateString("id-ID", {
+  const createdDate = newDate(nCreated).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  const updatedDate = newDate(note.updatedAt).toLocaleDateString("id-ID", {
+  const updatedDate = newDate(nUpdated).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -140,7 +140,7 @@ const EditNote = ({ note, content }) => {
               >
                 {loading ? "..." : "Update"}
               </button>
-              <DeleteNote note={note} />
+              <MemoDelete id={nId} />
             </div>
           </div>
         </div>
@@ -149,4 +149,6 @@ const EditNote = ({ note, content }) => {
   );
 };
 
-export default EditNote;
+const MemoEdit = memo(EditNote);
+
+export default MemoEdit;

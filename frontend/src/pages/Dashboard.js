@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
-import NoteCard from "../components/NoteCard";
 import AddNote from "../components/AddNote";
 import { useNoteStore } from "../store/noteStore";
 import NoteSkeleton from "../components/NoteSkeleton";
+import MemoNote from "../components/NoteCard";
 
 const Dashboard = () => {
   const [query, setQuery] = useState("");
@@ -106,7 +106,13 @@ const Dashboard = () => {
           {filterNotes?.length !== 0
             ? filterNotes?.map((note) => (
                 <div key={note._id}>
-                  <NoteCard note={note} />
+                  <MemoNote
+                    nTitle={note.title}
+                    nBody={note.body}
+                    nId={note._id}
+                    nCreated={note.createdAt}
+                    nUpdated={note.updatedAt}
+                  />
                 </div>
               ))
             : null}

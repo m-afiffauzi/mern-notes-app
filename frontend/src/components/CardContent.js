@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-const CardContent = ({ note }) => {
+const CardContent = ({ title, body, createdAt }) => {
   return (
     <>
       {/* Card */}
@@ -10,16 +10,16 @@ const CardContent = ({ note }) => {
         <div className="card-body flex flex-col justify-between p-4 lg:p-8">
           {/* Card Title */}
           <h2 className="card-title text-lg lg:text-2xl text-primary">
-            {note.title}
+            {title}
           </h2>
           {/* Card Body */}
           <div className="h-10 lg:h-20 text-sm lg:text-lg overflow-clip">
-            <p>{note.body}</p>
+            <p>{body}</p>
           </div>
           {/* Card Date */}
           <div className="card-actions justify-end">
             <p className="text-sm text-end text-primary-focus">
-              {formatDistanceToNow(new Date(note?.createdAt), {
+              {formatDistanceToNow(new Date(createdAt), {
                 addSuffix: true,
               })}
             </p>
@@ -30,4 +30,6 @@ const CardContent = ({ note }) => {
   );
 };
 
-export default CardContent;
+const MemoContent = memo(CardContent);
+
+export default MemoContent;
